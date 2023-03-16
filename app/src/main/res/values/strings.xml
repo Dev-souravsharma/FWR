@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FWR</string>
+    <string name="foodWasteReduction">Food Wastage Reduction</string>
+    <string name="welcome">Welcome Back</string>
+    <string name="login">Log In</string>
+    <string name="signIn">Register</string>
+</resources>
