@@ -4,4 +4,13 @@
     <string name="welcome">Welcome Back</string>
     <string name="login">Log In</string>
     <string name="signIn">Register</string>
+
+    <!--    Register-->
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="cell">Cell number</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
 </resources>
