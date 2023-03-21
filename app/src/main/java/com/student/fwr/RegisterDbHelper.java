@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
 
 public class RegisterDbHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "user";
@@ -20,7 +23,7 @@ public class RegisterDbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     // Create Entries
     private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + TABLE_NAME + " (" +
+            "CREATE TABLE " + TABLE_NAME + "(" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     COLUMN_NAME + " TEXT," +
                     COLUMN_ADDRESS + " TEXT," +
@@ -65,16 +68,22 @@ public class RegisterDbHelper extends SQLiteOpenHelper {
 
     public Boolean checkUsername(String email){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("Select * from user where email=?",new String[]{email});
-        if (cursor.getCount()>0) return true;
+        Cursor cursor = db.rawQuery("Select * from user where email= ?",new String[]{email});
+        if (cursor.getCount()>0) {
+            return true;
+        }
         return  false;
     }
 
-    public  Boolean checkUsernameAndPassword(String email,String password){
+    public  int checkUsernameAndPassword(String email,String password){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("Select * from user where email=? and password=?",new String[]{email,password});
-        if (cursor.getCount()>0) return true;
-        return  false;
+//        Cursor cursor = db.rawQuery("select name from user",null);
+      Cursor cursor = db.rawQuery("Select * from user where email = ? and password = ?",new String[] {password,email});
+        Log.d("Sourav", "checkUsernameAndPassword: "+cursor.getCount());
+        Boolean isValid = cursor.moveToFirst();
+        int count = cursor.getCount();
+        cursor.close();
+        db.close();
+        return  count;
     }
-
 }

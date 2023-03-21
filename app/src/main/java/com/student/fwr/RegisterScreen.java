@@ -38,7 +38,7 @@ public class RegisterScreen extends AppCompatActivity {
                 Log.d("Data", name + " " + address + cell + password + email);
               Boolean isEmailAvailable = dbHelper.checkUsername(email);
               if(!isEmailAvailable) {
-                  long isRegistered = dbHelper.insertUser(name, address, cell, password, email);
+                  long isRegistered = dbHelper.insertUser(name, address, cell,email,password);
               if (isRegistered!=-1){
                   Toast.makeText(RegisterScreen.this,"Registered Successfully",Toast.LENGTH_LONG).show();
                     Intent i = new Intent(RegisterScreen.this,Loginscreen.class);

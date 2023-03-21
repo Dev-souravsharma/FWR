@@ -18,6 +18,7 @@
             android:exported="false" />
         <activity
             android:name=".Loginscreen"
+            android:theme="@style/Theme.Splash"
             android:exported="false" />
         <activity
             android:name=".WelcomeScreen"
